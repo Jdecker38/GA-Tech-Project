@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Got Scammed by Group 7!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background: url('confetti-28.gif') no-repeat center center fixed;
+            background-size: cover; /* Ensures the GIF covers the entire background */
+        }
+
+        h1 {
+            color: rgb(255, 255, 255);
+            font-size: 5em;
+            text-align: center;
+            z-index: 1;
+            position: absolute; /* Allow text to move freely over the background */
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(100px, 100px);
+            }
+        }
+
+        /* Move the text around the screen */
+        h1 {
+            animation: bounce 3s infinite alternate;
+        }
+    </style>
+</head>
+<body>
+    <h1>You got scammed<br>by Group 7!</h1>
+
+    <script>
+        // Bounce text like the DVD logo around the screen
+        let h1 = document.querySelector('h1');
+        let posX = 200, posY = 200;
+        let velocityX = 3, velocityY = 3;
+        let screenWidth = window.innerWidth;
+        let screenHeight = window.innerHeight;
+
+        function moveText() {
+            posX += velocityX;
+            posY += velocityY;
+
+            // Check boundaries
+            if (posX + h1.offsetWidth >= screenWidth || posX <= 0) {
+                velocityX *= -1; // Reverse direction on x-axis
+            }
+            if (posY + h1.offsetHeight >= screenHeight || posY <= 0) {
+                velocityY *= -1; // Reverse direction on y-axis
+            }
+
+            h1.style.left = posX + 'px';
+            h1.style.top = posY + 'px';
+
+            requestAnimationFrame(moveText);
+        }
+
+        // Start moving the text
+        moveText();
+    </script>
+</body>
+</html>
